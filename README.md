@@ -6,7 +6,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Konstantin8105/FreePort/blob/master/LICENSE)
 [![GoDoc](https://godoc.org/github.com/Konstantin8105/FreePort?status.svg)](https://godoc.org/github.com/Konstantin8105/FreePort)
 
-Return a free tcp port
+Return a free tcp port.
 
 Minimal example of using:
 
