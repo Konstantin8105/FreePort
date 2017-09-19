@@ -16,7 +16,7 @@ func main(){
 	if err != nil {
 		panic(err)
 	}
-	if 0 < port && port < 65535 {
+	if 0 < port && port < 65536 {
 		fmt.Println("Found free tcp port")
 	}
 }

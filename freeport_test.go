@@ -50,8 +50,14 @@ func ExampleGet() {
 	if err != nil {
 		panic(err)
 	}
-	if 0 < port && port < 65535 {
+	if 0 < port && port < 65536 {
 		fmt.Println("Found free tcp port")
 	}
 	// Output: Found free tcp port
+}
+
+func BenchmarkGet(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_, _ = freeport.Get()
+	}
 }
