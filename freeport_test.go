@@ -25,7 +25,7 @@ func TestGetFreePort(t *testing.T) {
 func TestHaveNotFreePort(t *testing.T) {
 	// port : from 0 to 65535
 	amountPorts := 65536
-	conn := make([]net.Listener, amountPorts, amountPorts)
+	conn := make([]net.Listener, amountPorts)
 	counter := 0
 	for port := 0; port < amountPorts; port++ {
 		address := "127.0.0.1:" + strconv.Itoa(port)
