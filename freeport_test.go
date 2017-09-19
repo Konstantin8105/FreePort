@@ -1,7 +1,6 @@
 package freeport_test
 
 import (
-	"fmt"
 	"net"
 	"strconv"
 	"testing"
@@ -10,7 +9,7 @@ import (
 )
 
 func TestGetFreePort(t *testing.T) {
-	port, err := freeport.GetFreePort()
+	port, err := freeport.Get()
 	if err != nil {
 		t.Errorf("Error for founding to the free TCP port. err = %v", err)
 	}
@@ -24,16 +23,23 @@ func TestGetFreePort(t *testing.T) {
 
 func TestHaveNotFreePort(t *testing.T) {
 	// port : from 0 to 65535
-	for port := 0; port < 65536; port++ {
+	amountPorts := 65536
+	conn := make([]net.Listener, amountPorts, amountPorts)
+	counter := 0
+	for port := 0; port < amountPorts; port++ {
 		address := "127.0.0.1:" + strconv.Itoa(port)
-		fmt.Println("port = ", address)
-		conn, _ := net.Listen("tcp", address)
-		defer func() {
-			_ = conn.Close()
-		}()
+		c, err := net.Listen("tcp", address)
+		if err != nil {
+			continue
+		}
+		conn[counter] = c
+		counter++
 	}
-	port, err := freeport.GetFreePort()
+	port, err := freeport.Get()
 	if err == nil {
 		t.Errorf("Find free port, but all port must be busy. Port = ", port)
+	}
+	for i := 0; i < counter; i++ {
+		_ = conn[i].Close()
 	}
 }
