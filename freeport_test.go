@@ -1,6 +1,7 @@
 package freeport_test
 
 import (
+	"fmt"
 	"net"
 	"strconv"
 	"testing"
@@ -42,4 +43,15 @@ func TestHaveNotFreePort(t *testing.T) {
 	for i := 0; i < counter; i++ {
 		_ = conn[i].Close()
 	}
+}
+
+func ExampleGet() {
+	port, err := freeport.Get()
+	if err != nil {
+		panic(err)
+	}
+	if 0 < port && port < 65535 {
+		fmt.Println("Found free tcp port")
+	}
+	// Output: Found free tcp port
 }

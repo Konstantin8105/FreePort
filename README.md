@@ -7,3 +7,17 @@
 [![GoDoc](https://godoc.org/github.com/Konstantin8105/FreePort?status.svg)](https://godoc.org/github.com/Konstantin8105/FreePort)
 
 Return a free tcp port
+
+Minimal example of using:
+
+```golang
+func main(){
+	port, err := freeport.Get()
+	if err != nil {
+		panic(err)
+	}
+	if 0 < port && port < 65535 {
+		fmt.Println("Found free tcp port")
+	}
+}
+```
