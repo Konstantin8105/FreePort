@@ -21,3 +21,16 @@ func main(){
 	}
 }
 ```
+
+or:
+
+```golang
+func main() {
+	port, err := freeport.Get()
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	fmt.Print(port)
+}
+```
